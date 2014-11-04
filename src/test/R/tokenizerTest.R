@@ -24,8 +24,16 @@ test_that("Search Tokinzing", {
     expect_that(s[3],equals("time_total<2"))
 })
 
-test_that("Search Tokinzing", {
-	d=loadSource("test_curl_imageserver_ams1.log")
+test_that("Load data from file", {
+	d=loadSource(paste0("src/test/R/test_curl_imageserver_ams1.log"))
 	expect_that(dim(d)[1],equals(3923))
 	expect_that(dim(d)[2],equals(9))
 })
+
+
+test_that("Select numeric", {
+    d=loadSource(paste0("src/test/R/test_curl_imageserver_ams1.log"))
+    selectNumeric(d,"time_nslookup<0.2");
+    expect_that(dim(d)[1],equals(3619))
+})  
+

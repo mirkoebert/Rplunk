@@ -31,10 +31,12 @@ getSourceNameFromSearchTokenList = function(w){
 loadSource = function(sourcename){
   	#locale_origin=Sys.getlocale("LC_TIME")
   	#Sys.setlocale("LC_TIME","en_US.utf8")
-  	data = read.csv(paste0("src/test/R/",sourcename), sep=";")
+  	data = read.csv(sourcename, sep=";")
   	#data$ddate = strptime(b$date ,"%a %b %d %T CET %Y")
   	#Sys.setlocale(locale_origin)
 	return(data)
 }
 
-
+selectNumeric = function(data, selectToken){
+	return(data)
+}
