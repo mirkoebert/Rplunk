@@ -1,21 +1,20 @@
-require(stringr)
-
-#search=" source=test_curl_imageserver_ams1.log url=*images*  time_total<2 "
-#print(search)
+library(stringr)
 
 splitSearchIntoToken = function(search){
 	search = str_trim(search)
 	search =str_replace_all(search, "\\s{2,}", " ")
-	print(search)
+	search =str_replace_all(search, "\\s\\=", "=")
+	search =str_replace_all(search, "\\=\\s", "=")
+    search =str_replace_all(search, "\\s<", "<")
+    search =str_replace_all(search, "<\\s", "<")
+    search =str_replace_all(search, "\\s>", ">")
+    search =str_replace_all(search, ">\\s", ">")
 	w = strsplit(search, " ")
 	w=unlist(w)
-	print("Search query as token:")
-	print(w)
 	return(w)
 }
 
 getSourceName = function(w){
-  sourcename =""
   for(x in w){
     print(x)
     if(grepl("source*",x)){
@@ -25,7 +24,7 @@ getSourceName = function(w){
         return(x)
     }
   }
-  return(sourcename)
+  return("")
 }
 
 
@@ -35,6 +34,7 @@ loadSource = function(sourcename){
   data = read.csv(sourcename, sep=";")
   b$ddate = strptime(b$date ,"%a %b %d %T CET %Y")
   Sys.setlocale(locale_origin)
+	return(data)
 }
 
 
