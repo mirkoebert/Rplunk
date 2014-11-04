@@ -14,7 +14,7 @@ splitSearchIntoToken = function(search){
 	return(w)
 }
 
-getSourceName = function(w){
+getSourceNameFromSearchTokenList = function(w){
   for(x in w){
     print(x)
     if(grepl("source*",x)){
@@ -29,23 +29,12 @@ getSourceName = function(w){
 
 
 loadSource = function(sourcename){
-  locale_origin=Sys.getlocale("LC_TIME")
-  Sys.setlocale("LC_TIME","en_US.utf8")
-  data = read.csv(sourcename, sep=";")
-  b$ddate = strptime(b$date ,"%a %b %d %T CET %Y")
-  Sys.setlocale(locale_origin)
+  	#locale_origin=Sys.getlocale("LC_TIME")
+  	#Sys.setlocale("LC_TIME","en_US.utf8")
+  	data = read.csv(paste0("src/test/R/",sourcename), sep=";")
+  	#data$ddate = strptime(b$date ,"%a %b %d %T CET %Y")
+  	#Sys.setlocale(locale_origin)
 	return(data)
 }
 
 
-#sourcename= getSourceName(w)
-#print(sourcename)
-#data = loadSource(sourcename)
-# transform token to parameter
-#w1 = strsplit(w[2], "<")
-#w1=unlist(w1)
-#print("X:")
-#print(w1)
-
-#data = read.csv("test_curl_imageserver_ams1.log", sep=";")
-#r = data[data[,c(w1[1])] < w1[2], ]

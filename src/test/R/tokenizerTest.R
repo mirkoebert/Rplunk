@@ -5,9 +5,9 @@ library("testthat")
 
 
 test_that("Single Source Name", {
-	s=getSourceName("source=test_curl_imageserver_ams1.log")
+	s=getSourceNameFromSearchTokenList("source=test_curl_imageserver_ams1.log")
 	expect_that(s,equals("test_curl_imageserver_ams1.log"))
-	s=getSourceName("")
+	s=getSourceNameFromSearchTokenList("")
     expect_that(s,equals(""))
 
 })
@@ -22,4 +22,10 @@ test_that("Search Tokinzing", {
     expect_that(s[1],equals("source=test_curl_imageserver_ams1.log"))
     expect_that(s[2],equals("url=*images*"))
     expect_that(s[3],equals("time_total<2"))
+})
+
+test_that("Search Tokinzing", {
+	d=loadSource("test_curl_imageserver_ams1.log")
+	expect_that(dim(d)[1],equals(3923))
+	expect_that(dim(d)[2],equals(9))
 })
