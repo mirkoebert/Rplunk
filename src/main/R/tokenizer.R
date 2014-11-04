@@ -38,5 +38,7 @@ loadSource = function(sourcename){
 }
 
 selectNumeric = function(data, selectToken){
-	return(data)
+	b = "time_nslookup"
+	q = data[data[,c(b)]<0.2,]
+	return(q)
 }

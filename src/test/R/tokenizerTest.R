@@ -33,7 +33,7 @@ test_that("Load data from file", {
 
 test_that("Select numeric", {
     d=loadSource(paste0("src/test/R/test_curl_imageserver_ams1.log"))
-    selectNumeric(d,"time_nslookup<0.2");
-    expect_that(dim(d)[1],equals(3619))
+    r=selectNumeric(d,"time_nslookup<0.2");
+    expect_that(dim(r)[1],equals(3619))
 })  
 
