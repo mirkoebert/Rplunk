@@ -45,3 +45,11 @@ selectNumeric = function(data, selectToken){
 	q = data[data[,c(b)]<w[2],]
 	return(q)
 }
+
+search = function(search){
+	w=splitSearchIntoToken(search)
+	s=getSourceNameFromSearchTokenList(w)
+	d = loadSource(s)
+	r = selectNumeric(d, w[2])
+	return(r)
+}

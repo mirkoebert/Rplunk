@@ -37,3 +37,8 @@ test_that("Select numeric", {
     expect_that(dim(r)[1],equals(3619))
 })  
 
+test_that("Simple load and select", {
+    r=search("source=src/test/R/test_curl_imageserver_ams1.log time_nslookup<0.2")
+    expect_that(dim(r)[1],equals(3619))
+})
+
