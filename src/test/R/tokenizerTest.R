@@ -1,4 +1,4 @@
-#! /usr/bin/Rscript --vanilla
+#! /usr/local/bin/Rscript --vanilla
 
 source("src/main/R/tokenizer.R")
 library("testthat")
