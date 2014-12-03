@@ -39,11 +39,20 @@ loadSource = function(sourcename){
 
 selectNumeric = function(data, selectToken){
 	w = strsplit(selectToken, "<")
-    w=unlist(w)
-	#b = "time_nslookup"
-	b=w[1]
-	q = data[data[,c(b)]<w[2],]
-	return(q)
+    	w = unlist(w)
+	if(length(w)>1){
+		b=w[1]
+		q = data[data[,c(b)]<w[2],]
+		return(q)
+	}
+ 	w = strsplit(selectToken, ">")
+        w = unlist(w)
+        if(length(w)>1){
+                b=w[1]
+                q = data[data[,c(b)]>w[2],]
+                return(q)
+        }
+
 }
 
 search = function(search){
