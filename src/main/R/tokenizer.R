@@ -16,17 +16,27 @@ splitSearchIntoToken = function(search){
 
 getSourceNameFromSearchTokenList = function(w){
   for(x in w){
-    print(x)
     if(grepl("source*",x)){
-        x = strsplit(w, "=")
-        x=unlist(x)
-        x=x[2]
-        return(x)
+        sourcename = strsplit(x, "=")
+        sourcename = unlist(sourcename)
+        sourcename = sourcename[2]
+        return(sourcename)
     }
   }
   return("")
 }
 
+removeSourceNameFromSearchTokenList = function(w){
+        i = 1;
+  for(x in w){
+    if(grepl("source*",x)){
+        w = w [-i]
+        return(w)
+    }
+        i = i +1;
+  }
+  return("")
+}
 
 loadSource = function(sourcename){
   	#locale_origin=Sys.getlocale("LC_TIME")
@@ -63,9 +73,10 @@ selectNumeric = function(data, selectToken){
 }
 
 search = function(search){
-	w=splitSearchIntoToken(search)
-	s=getSourceNameFromSearchTokenList(w)
+	w = splitSearchIntoToken(search)
+	s = getSourceNameFromSearchTokenList(w)
+        w = removeSourceNameFromSearchTokenList(w)
 	d = loadSource(s)
-	r = selectNumeric(d, w[2])
+	r = selectNumeric(d, w[1])
 	return(r)
 }
